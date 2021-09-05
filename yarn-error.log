@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/16.8.0/bin/node /Users/daviderivola/.yarn/bin/yarn.js add -D truffle-plugin-verify
+  /usr/local/Cellar/node/16.8.0/bin/node /Users/daviderivola/.yarn/bin/yarn.js install
 
 PATH: 
   /Users/daviderivola/.yarn/bin:/Users/daviderivola/.config/yarn/global/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin
