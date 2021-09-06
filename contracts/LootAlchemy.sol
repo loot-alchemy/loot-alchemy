@@ -1287,6 +1287,7 @@ abstract contract ERC721Enumerable is ERC721, IERC721Enumerable {
 contract LootAlchemy is ERC721Enumerable, ReentrancyGuard {
 
     IERC721 constant LOOT = IERC721(0xFF9C1b15B16263C61d017ee9F65C50e4AE0113D7);
+    IERC721 constant CHEMVERSE = IERC721(0x3e13b1b68200eD80Ad37F5C4ab6888e5119402aD);
     
     constructor() ERC721("LootAlchemy", "LOOTA") {
     }
@@ -1450,9 +1451,10 @@ contract LootAlchemy is ERC721Enumerable, ReentrancyGuard {
     }
 
     function tokenURI(uint256 tokenId) override public view returns (string memory) {
-        string[17] memory parts;
+        string[13] memory parts;
+        
         parts[0] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { fill: white; font-family: serif; font-size: 14px; }</style><rect width="100%" height="100%" fill="black" /><text x="10" y="20" class="base">';
-
+        
         parts[1] = getVessel(tokenId);
 
         parts[2] = '</text><text x="10" y="40" class="base">';
@@ -1475,10 +1477,10 @@ contract LootAlchemy is ERC721Enumerable, ReentrancyGuard {
 
         parts[11] = getComponent(tokenId);
 
-        parts[12] = '</text><text x="10" y="140" class="base">';
+        parts[12] = '</text></svg>';
 
         string memory output = string(abi.encodePacked(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8]));
-        output = string(abi.encodePacked(output, parts[9], parts[10], parts[11], parts[12], parts[13], parts[14], parts[15], parts[16]));
+        output = string(abi.encodePacked(output, parts[9], parts[10], parts[11], parts[12]));
         
         string memory json = Base64.encode(bytes(string(abi.encodePacked('{"name": "Bag #', toString(tokenId), '", "description": "LootAlchemy are randomized alchemic labs generated and stored on chain. Stats, images, and other functionality are intentionally omitted for others to interpret. Feel free to use LootAlchemy in any way you want.", "image": "data:image/svg+xml;base64,', Base64.encode(bytes(output)), '"}'))));
         output = string(abi.encodePacked('data:application/json;base64,', json));
@@ -1490,6 +1492,8 @@ contract LootAlchemy is ERC721Enumerable, ReentrancyGuard {
         require(tokenId > 0, "Token ID invalid");
         if (tokenId < 8001) {
             require(msg.sender == LOOT.ownerOf(tokenId), "Not LOOT Owner");
+        } else if(tokenId < 10001) {
+            require(CHEMVERSE.balanceOf(msg.sender) > 0, "Not Chemverse Holder");
         } else {
             require(tokenId < 16001, "Token ID invalid");
         }
