@@ -36,7 +36,7 @@ module.exports = {
       },
       gas: 5000000,
       network_id: 4,
-      from: '0xd5D0f8FcfE9fF50155d4453B802CC38b9bcE7eaF'
+      from: '0x6737c3C45CB04Bc75Fe7Ee3329fDd6FF2e760f9C'
     },
     live: {
       network_id: 1,
@@ -45,7 +45,7 @@ module.exports = {
       },
       gas: 5000000,
       gasPrice: 5000000000,
-      from: '0xd5D0f8FcfE9fF50155d4453B802CC38b9bcE7eaF'
+      from: '0x6737c3C45CB04Bc75Fe7Ee3329fDd6FF2e760f9C'
     },
   },
   mocha: {
@@ -60,9 +60,10 @@ module.exports = {
       version: "^0.8.0",
       settings: {
         optimizer: {
-          enabled: true,
-          runs: 20   // Optimize for how many times you intend to run the code
+          enabled: false,
+          runs: 200   // Optimize for how many times you intend to run the code
         },
+        //evmVersion: 'petersburg'
       },
     },
   },
@@ -70,6 +71,6 @@ module.exports = {
     'truffle-plugin-verify'
   ],
   api_keys: {
-    etherscan: 'UHW7G993FBZ8GM4DZA2S3Y6WDY3A72SME7'
+    etherscan: 'ZNX4VXKHGFTYKHGWPSCGGT3BPR13RYWE2A'
   }
 };
